@@ -47,3 +47,4 @@ jobs:
       - run: |
           docker build -t caryyu/springboot4circleci:latest .
           docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker push caryyu/springboot4circleci:latest

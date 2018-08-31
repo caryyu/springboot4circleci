@@ -43,4 +43,6 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
 
-      - run: docker build -t caryyu/springboot4circleci:latest .
+      - run: |
+        docker build -t caryyu/springboot4circleci:latest .
+        docker login -u $DOCKER_USER -p $DOCKER_PASS

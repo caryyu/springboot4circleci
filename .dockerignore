@@ -1,0 +1,6 @@
+.git/
+.circleci/
+src/
+target/
+target/*.jar.original
+!target/*.jar

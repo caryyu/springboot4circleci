@@ -2,7 +2,9 @@
 FROM maven:alpine as builder
 WORKDIR /workspace/
 COPY . /workspace/
-RUN mvn package -Dmaven.test.skip=true
+
+RUN mvn -B -e -C -T 1C dependency:go-offline
+RUN mvn -B -e -o -T 1C package -Dmaven.test.skip=true
 
 # Runtime
 FROM openjdk:8-jre-alpine

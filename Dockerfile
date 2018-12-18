@@ -12,12 +12,8 @@ ENV jarName=$module-$version.jar
 
 ADD target/$jarName /
 
-ADD ./docker-entrypoint.sh /
-
-RUN chmod u+x /docker-entrypoint.sh
-
 WORKDIR /
 
 EXPOSE 8080
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT java $JAVA_OPTS -jar $jarName

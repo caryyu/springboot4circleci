@@ -1,6 +1,11 @@
+.idea
 .git/
 .circleci/
-src/
+mvnw
+mvnw.cmd
+README.md
+!src/
+!pom.xml
 target/
 target/*.jar.original
-!target/*.jar
+target/*.jar

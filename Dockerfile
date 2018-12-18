@@ -1,6 +1,12 @@
+# Build
+FROM maven:alpine as builder
+WORKDIR /workspace/
+COPY . /workspace/
+RUN mvn package -Dmaven.test.skip=true
+
+# Runtime
 FROM openjdk:8-jre-alpine
 
-# 设置时区与语言
 RUN apk update && apk add tzdata \
       && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
       && echo "Asia/Shanghai" >  /etc/timezone \
@@ -10,7 +16,7 @@ ARG module=springboot4circleci
 ARG version=0.0.1-SNAPSHOT
 ENV jarName=$module-$version.jar
 
-ADD target/$jarName /
+COPY --from=builder /workspace/target/$jarName /
 
 WORKDIR /
 
